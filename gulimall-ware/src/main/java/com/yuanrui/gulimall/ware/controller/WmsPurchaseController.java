@@ -1,8 +1,10 @@
 package com.yuanrui.gulimall.ware.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
+import com.yuanrui.gulimall.ware.feign.productFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +31,15 @@ import com.yuanrui.common.utils.R;
 public class WmsPurchaseController {
     @Autowired
     private WmsPurchaseService wmsPurchaseService;
+
+    @Autowired
+    private productFeign productFeign;
+
+    @RequestMapping("/test")
+    public R test(){
+        R list = productFeign.list(new HashMap<>());
+        return R.ok().put("username", "袁瑞").put("brandList",list );
+    }
 
     /**
      * 列表
